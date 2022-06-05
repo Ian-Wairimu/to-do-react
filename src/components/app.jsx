@@ -20,6 +20,7 @@ const App = () => {
         setItems(prevItem => {
             return [...prevItem, list]
         })
+        setList("")
     }
 
    
