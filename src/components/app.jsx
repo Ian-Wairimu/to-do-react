@@ -9,8 +9,20 @@ import "./style/style.css"
 
 
 const App = () => {
-    const [todo, setTodo] = useState([])
-    console.log(setTodo);
+    const [list, setList] = useState("");
+    const [items, setItems] = useState([]);
+
+    const handleChange = (event) => {
+        const newValue = event.target.value;
+        setList(newValue);
+    }
+    const handleClick = () => {
+        setItems(prevItem => {
+            return [...prevItem, list]
+        })
+    }
+
+   
 
     return (
         <>
@@ -19,14 +31,16 @@ const App = () => {
                     <h1>To-Do List</h1>
                 </div>
                 <div className="form">
-                    <input type="text"/>
-                    <button>
+                    <input type="text" name="list" onChange={handleChange} value={list}/>
+                    <button onClick={handleClick}>
                     <span>Add</span>
                     </button>
                 </div>
                 <div>
                     <ul>
-                    <li>{}</li>
+                   {items.map((listItems) => {
+                       return <li>{listItems}</li>
+                   })}
                     </ul>
                 </div>
             </div>
