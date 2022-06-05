@@ -22,8 +22,13 @@ const App = () => {
         })
         setList("")
     }
-
-   
+    const itemDelete = (id) => {
+        setItems((preValue) => {
+            return preValue.filter((_, index) => {
+                return id !== index;
+            })
+        })
+    }
 
     return (
         <>
@@ -39,8 +44,8 @@ const App = () => {
                 </div>
                 <div>
                     <ul>
-                   {items.map((listItems) => {
-                     return <ToDoList name={listItems} />;
+                   {items.map((listItems, index) => {
+                     return <ToDoList key={index} id={index} name={listItems} onChecked={itemDelete} />;
                    })}
                     </ul>
                 </div>
